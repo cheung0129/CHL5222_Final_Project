@@ -36,3 +36,5 @@ table1_by_ycround <- table1(
   topclass = "Rtable1-stripe",
   overall = FALSE
 )
+
+table1_by_ycround
