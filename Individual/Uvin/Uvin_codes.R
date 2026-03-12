@@ -1,39 +1,23 @@
----
-title: "Uvin's code"
-author: "Uvin Chuan"
-date: "2026-03-12"
-output: pdf_document
-editor_options: 
-  chunk_output_type: console
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(readr)
 library(tidyverse)
-library(gtsummary)
 library(table1)
-```
 
 ## Load dataset
-```{r}
 setwd("~/CHL5222_Final_Project")
 eth <- read_csv("https://raw.githubusercontent.com/cheung0129/CHL5222_Final_Project/refs/heads/main/data/processed/ethiopia_processed.csv")
-```
 
 ## Table 1
-```{r}
 table1_eth <- eth |>
   mutate(chsex = factor(chsex,
-                   levels = c(1, 2),
-                   labels = c("Female", "Male")),
+                        levels = c(1, 2),
+                        labels = c("Female", "Male")),
          yc = factor(yc,
-                levels = c(0, 1),
-                labels = c("Older cohort", "Younger cohort")),
+                     levels = c(0, 1),
+                     labels = c("Older cohort", "Younger cohort")),
          round = factor(round),
          drwaterq_new = factor(drwaterq_new,
-                          levels = c(0, 1),
-                          labels = c("No safe water", "Safe water")))
+                               levels = c(0, 1),
+                               labels = c("No safe water", "Safe water")))
 
 #Label
 label(table1_eth$agemon)        <- "Age (months)"
@@ -52,6 +36,3 @@ table1_by_ycround <- table1(
   topclass = "Rtable1-stripe",
   overall = FALSE
 )
-```
-
-
