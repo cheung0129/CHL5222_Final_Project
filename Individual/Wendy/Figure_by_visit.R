@@ -4,16 +4,20 @@ library(dplyr)
 library(gtsummary)
 library(flextable)
 ethiopia <- read.csv("data/processed/ethiopia_processed.csv")
+ethiopia_cc <- read.csv("data/processed/ethiopia_complete_cases.csv")
 
 
-ethiopia |> 
-  mutate(yc=factor(yc, levels=c(0,1), labels=c("Old","Young"))) |> 
-  ggplot(aes(x=agemon, y=zhfa,  col=round))+
-  geom_point()+
-  stat_smooth(col="red")+
-  # geom_violin(trim =F, fill=NA, col='red')+
-  facet_grid(round~yc, scales="free_x")+
+ethiopia_cc |> 
+  mutate(yc=factor(yc, levels=c(0,1), labels=c("Old","Young")),
+         drwaterq_new=as.factor(drwaterq_new)) |> 
+  ggplot(aes(x=round, y=zhfa, col=drwaterq_new))+
+  geom_violin(aes(group=round),fill=NA)+
+  facet_grid(yc~drwaterq_new,
+             labeller=as_labeller(c("0"="No safe drinking water","1"="Access to drinking water",
+                                    "Old"="Old", "Young"="Young")))+
+  stat_summary(geom="line",fun="median")+
   theme_bw()+
-  labs(x="Age in months", y="Height-for-age z-score")
+  labs(x="Survey Round", y="Height-for-age z-score")+
+  theme(legend.position = "none")
 ggsave("individual/Wendy/output/figure_by_visit.png", 
-       width=23,height=21,unit="cm")
+       width=24,height=21,unit="cm")
