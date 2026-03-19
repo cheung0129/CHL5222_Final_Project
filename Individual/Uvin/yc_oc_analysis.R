@@ -23,7 +23,7 @@ eth_oc <- eth |>
 eth_yc <- eth |>
   filter(yc == "1")
 
-#full model
+#################### full model ####################
 full_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
                     chsex*drwaterq_new + agemon*drwaterq_new +
                     chsex*agemon*drwaterq_new +
@@ -43,14 +43,10 @@ interaction_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
 
 anova(full_model, interaction_model)
 
+####the effects of sex, age, and water quality
+####differ between younger and older children 
 
-
-yc * (chsex + agemon + drwaterq_new)
-
-anova(pooled_model, interaction_model)
-
-
-#old cohort
+#################### old cohort ####################
 oc_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
                     chsex*drwaterq_new + agemon*drwaterq_new +
                     chsex*agemon*drwaterq_new +
@@ -58,8 +54,10 @@ oc_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
                   data = eth_oc,
                   REML = FALSE)
 summary(oc_model)
+oc_model_reduced <- update(oc_model, . ~ . - chsex:agemon:drwaterq_new)
+anova(oc_model, oc_model_reduced)
 
-#yound cohort
+#################### yound cohort ####################
 yc_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
                   chsex*drwaterq_new + agemon*drwaterq_new +
                   chsex*agemon*drwaterq_new +
@@ -69,12 +67,8 @@ yc_model<- lmer(zhfa ~ chsex + agemon + drwaterq_new + chsex*agemon +
 summary(yc_model)
 
 
-#
 
-oc_model_reduced <- update(oc_model, . ~ . - chsex:agemon:drwaterq_new)
 yc_model_reduced <- update(yc_model, . ~ . - chsex:agemon:drwaterq_new)
-
-anova(oc_model, oc_model_reduced)
 anova(yc_model, yc_model_reduced)
 
 
@@ -86,9 +80,12 @@ tab_model(full_model, oc_model, yc_model,
           dv.labels = c("Pooled", "Older", "Younger"))
 
 ######
-#The older cohort shows stronger and more interpretable effects, especially for sex and water quality.
-#The younger cohort appears more homogeneous, with weaker or non-significant effects.
-#The 3-way interaction is only meaningful in the older cohort, so you may choose to drop it in the younger model (based on sensitivity analysis).
-#These findings suggest that interventions targeting water quality may be more impactful for older children, especially boys.
+#The older cohort shows stronger and more interpretable effects, especially for
+##sex and water quality.
+#The younger cohort appears more homogeneous, with weaker or
+##non-significant effects.
+#The 3-way interaction is only meaningful in the older cohort
+#Interventions targeting water quality may be more impactful for older children,
+##especially boys.
 
   
