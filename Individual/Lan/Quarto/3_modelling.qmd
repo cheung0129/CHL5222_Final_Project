@@ -1,0 +1,345 @@
+---
+title: "modelling"
+format: html
+embed-resources: true
+toc: true
+toc-expand: true
+---
+
+## model formation
+```{r, include=FALSE}
+# young cohort
+# import packages
+library(lme4)
+library(here)
+library(dplyr)
+library(lmerTest)
+
+library(ggeffects)
+library(ggplot2)
+
+# load data and refactor
+path_ethiopia_processed <- here("Assignments","Prep work","ethiopia_processed.csv")
+
+ethiopia_processed <- read.csv(path_ethiopia_processed, row.names = 1) %>% 
+  mutate(childid = factor(childid),
+         round = factor(round, c(1:5)),
+         dint = as.Date(dint, format = "%Y-%m-%d"),
+         chsex = factor(chsex, levels = c(1,2)),
+         drwaterq_new = factor(drwaterq_new, levels = c(0,1)))
+
+# dataframe of baseline measurement date, baseline age
+ethiopia_first <- ethiopia_processed %>% 
+  group_by(childid) %>% 
+  arrange(childid, dint) %>% 
+  filter(round == 1) %>% 
+  mutate(int_first = dint,
+         age_first = agemon) %>% 
+  select(childid, int_first, age_first) %>% ungroup()
+
+# include follow-up time (years)
+ethiopia_df <- ethiopia_processed %>% 
+  left_join(ethiopia_first) %>% 
+  mutate(time = as.numeric(difftime(dint, int_first, units = "days") / 365.25),
+         stunting = ifelse(as.numeric(zhfa) < -2, 1,0)) %>% 
+  mutate(stunting = factor(stunting, levels = c(0,1))) 
+
+
+# YOUNG COHORT ====
+
+ethiopia_yg <- ethiopia_df %>% 
+  filter(yc == 1) %>%
+  mutate(age_first_c = age_first - mean(age_first, na.rm = TRUE))
+
+ethiopia_old <- ethiopia_df %>% 
+  filter(yc == 0) %>%
+  filter(round != 5) %>% 
+  mutate(age_first_c = age_first - mean(age_first, na.rm = TRUE))
+
+```
+
+#### age (months) as time
+```{r}
+# base model: agemon as time
+mod_yg_age <- lmer(zhfa ~ chsex + agemon + drwaterq_new +
+                       chsex:agemon + chsex:drwaterq_new +
+                       (1 | childid),
+                     data = ethiopia_yg)
+summary(mod_yg_age)
+```
+
+#### follow-up (years) as time, with centred age included
+```{r, echo = FALSE}
+mod_yg_time <- lmer(zhfa ~ chsex + time + drwaterq_new +
+                    chsex:time + chsex:drwaterq_new +
+                    age_first_c + 
+                    (1 | childid),
+                  data = ethiopia_yg)
+summary(mod_yg_time)
+```
+
+### Young Cohort
+```{r, echo = FALSE}
+mod_yg_time <- lmer(zhfa ~ chsex + time + drwaterq_new +
+                    chsex:time + chsex:drwaterq_new +
+                    age_first_c + 
+                    (1 | childid),
+                  data = ethiopia_yg)
+summary(mod_yg_time)
+
+# plot: time grouped by sex, separated by access
+# sex and time affect observed
+# potentially little sex and time effect at baseline (for those without access)
+plot(ggpredict(mod_yg_time, terms = c("time", "chsex", "drwaterq_new"))) +
+  labs(
+    title = "(1) Model-Based Means Over Time, Grouped by Sex",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Sex"
+  ) +
+  theme_minimal()
+
+
+# plot: scores partitioned by sex, grouped by water access
+# having access associated with higher zhfa
+# lack of interaction effect (access and sex)
+plot(ggpredict(mod_yg_time, terms = c("chsex", "drwaterq_new"))) +
+  labs(
+    title = "(2) Model-Based Means Partitioned by Sex, Grouped by Water Access",
+    x = "Sex",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+
+# plot: time grouped by access, separated by sex
+# lack of time and access effect (parallel, across sex)
+plot(ggpredict(mod_yg_time, terms = c("time", "drwaterq_new", "chsex"))) +
+  labs(
+    title = "(3) Model-Based Means Over Time, Grouped by Water Access",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+# confirmation in 2-variable plot
+# lack of effect of access
+plot(ggpredict(mod_yg_time, terms = c("time", "drwaterq_new"))) +
+  labs(
+    title = "(4) Model-Based Means Over Time, Grouped by Access",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+```
+
+### Older Cohort
+```{r, echo=FALSE}
+mod_old_time <- lmer(zhfa ~ chsex + time + drwaterq_new +
+                         chsex:time + chsex:drwaterq_new +
+                         age_first_c+ 
+                         (1 | childid),
+                       data = ethiopia_old)
+summary(mod_old_time)
+
+# plot: time grouped by sex, separated by access
+# sex and time affect observed
+# potentially little sex and time effect at baseline (for those without access)
+plot(ggpredict(mod_old_time, terms = c("time", "chsex", "drwaterq_new"))) +
+  labs(
+    title = "(1) Model-Based Means Over Time, Grouped by Sex",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Sex"
+  ) +
+  theme_minimal()
+
+
+# plot: scores partitioned by sex, grouped by water access
+# having access associated with higher zhfa
+# lack of interaction effect (access and sex)
+plot(ggpredict(mod_old_time, terms = c("chsex", "drwaterq_new"))) +
+  labs(
+    title = "(2) Model-Based Means Partitioned by Sex, Grouped by Water Access",
+    x = "Sex",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+
+# plot: time grouped by access, separated by sex
+# lack of time and access effect (parallel, across sex)
+plot(ggpredict(mod_old_time, terms = c("time", "drwaterq_new", "chsex"))) +
+  labs(
+    title = "(3) Model-Based Means Over Time, Grouped by Water Access",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+# confirmation in 2-variable plot
+# lack of effect of access
+plot(ggpredict(mod_old_time, terms = c("time", "drwaterq_new"))) +
+  labs(
+    title = "(4) Model-Based Means Over Time, Grouped by Access",
+    x = "Time",
+    y = "Predicted Value of Zhfa",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+```
+
+## Binary Outcome
+### Younger Cohort
+```{r, echo=FALSE}
+table(ethiopia_yg$stunting, useNA = "always")
+
+# Use Follow-up years as Time
+glmm_yg_time <- glmer(stunting ~ chsex + time + drwaterq_new +
+                           age_first_c +
+                           chsex:time + chsex:drwaterq_new +
+                           (1 | childid),
+                         data = ethiopia_yg,
+                         family = binomial,
+                         # default optimizer failed to converge
+                         # use a different optimizer and increase number of iterations
+                         control = glmerControl(optimizer = "bobyqa", 
+                                                optCtrl = list(maxfun=2e5)))
+summary(glmm_yg_time)
+
+plot(ggpredict(glmm_yg_time, 
+               terms = c("time [all]", "chsex", "drwaterq_new"), 
+               type = "fixed")) +
+  labs(
+    title = "(A) Predicted Probability of Stunting Over Time",
+    subtitle = "Faceted by Water Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Sex"
+  ) +
+  theme_minimal()
+
+
+# plot: scores partitioned by sex, grouped by water access
+# having access associated with higher zhfa
+# lack of interaction effect (access and sex)
+plot(ggpredict(glmm_yg_time, terms = c("chsex", "drwaterq_new"),
+               type = "fixed")) +
+  labs(
+    title = "(B) Model-Based Means Over Time, Grouped by Water Access",
+    x = "Sex",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+
+# plot: time grouped by access, separated by sex
+# lack of time and access effect (parallel, across sex)
+plot(ggpredict(glmm_yg_time, terms = c("time [all]", "drwaterq_new", "chsex"),
+               type = "fixed")) +
+  labs(
+    title = "(C) Predicted Probability of Stunting Over Time, Grouped by Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+# confirmation in 2-variable plot
+# lack of effect of access
+plot(ggpredict(glmm_yg_time, terms = c("time [all]", "drwaterq_new"),
+               type = "fixed")) +
+  labs(
+    title = "(D) Predicted Probability of Stunting Over Time, Grouped by Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+```
+
+### older cohort
+```{r, echo=FALSE}
+table(ethiopia_old$stunting, useNA = "always")
+
+
+glmm_old_time <- glmer(stunting ~ chsex + time + drwaterq_new +
+                           age_first_c+
+                           chsex:time + chsex:drwaterq_new +
+                           (1 | childid),
+                         data = ethiopia_old,
+                         family = binomial,
+                         # default optimizer failed to converge
+                         # use a different optimizer and increase number of iterations
+                         control = glmerControl(optimizer = "bobyqa", 
+                                                optCtrl = list(maxfun=2e5)))
+summary(glmm_old_time)
+
+plot(ggpredict(glmm_old_time, 
+               terms = c("time [all]", "chsex", "drwaterq_new"), 
+               type = "fixed")) +
+  labs(
+    title = "(A) Predicted Probability of Stunting Over Time",
+    subtitle = "Faceted by Water Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Sex"
+  ) +
+  theme_minimal()
+
+
+# plot: scores partitioned by sex, grouped by water access
+# having access associated with higher zhfa
+# lack of interaction effect (access and sex)
+plot(ggpredict(glmm_old_time, terms = c("chsex", "drwaterq_new"),
+               type = "fixed")) +
+  labs(
+    title = "(B) Model-Based Means Over Time, Grouped by Water Access",
+    x = "Sex",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+
+# plot: time grouped by access, separated by sex
+# lack of time and access effect (parallel, across sex)
+plot(ggpredict(glmm_old_time, terms = c("time [all]", "drwaterq_new", "chsex"),
+               type = "fixed")) +
+  labs(
+    title = "(C) Predicted Probability of Stunting Over Time, Grouped by Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+
+
+# confirmation in 2-variable plot
+# lack of effect of access
+plot(ggpredict(glmm_old_time, terms = c("time [all]", "drwaterq_new"),
+               type = "fixed")) +
+  labs(
+    title = "(D) Predicted Probability of Stunting Over Time, Grouped by Access",
+    x = "Time",
+    y = "Probability of Stunting",
+    color = "Water Access"
+  ) +
+  theme_minimal()
+```
+
