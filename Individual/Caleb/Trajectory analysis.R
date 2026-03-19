@@ -8,16 +8,16 @@ data %>%
   mutate(chsex = factor(chsex,
                      levels = c(1,2),
                      ))%>%
-  group_by(chsex, round) %>% 
+  group_by(chsex, agemon) %>% 
   summarise(m = mean(zhfa,na.rm = TRUE))%>%
-  ggplot(aes(x = as.factor(round),
+  ggplot(aes(x = agemon,
              y = m,
              colour = chsex,
              group = chsex)) +
   geom_point()+
   geom_line()+
   labs(colour = "Sex",
-       x = "Round of survey", 
+       x = "Age", 
        y = "Height-for-age z-score",
        title = "Height-for-age z-score by Sex")
 
@@ -27,16 +27,16 @@ data %>%
   mutate(yc = factor(yc,
                      levels = c(0,1),
                      labels = c("Older", "Younger")))%>%
-  group_by(yc, round) %>% 
+  group_by(yc, agemon) %>% 
   summarise(m = mean(zhfa,na.rm = TRUE))%>%
-  ggplot(aes(x = as.factor(round),
+  ggplot(aes(x = agemon,
              y = m,
              colour = yc,
              group = yc)) +
   geom_point()+
   geom_line()+
   labs(colour = "Cohort",
-       x = "Round of survey", 
+       x = "Age", 
        y = "Height-for-age z-score",
        title = "Height-for-age z-score by Cohort")
 
@@ -47,9 +47,9 @@ data %>%
                         levels = c(0,1),
                         labels = c("No","Yes")
   ))%>%
-  group_by(water, round) %>% 
+  group_by(water, agemon) %>% 
   summarise(m = mean(zhfa,na.rm = TRUE))%>%
-  ggplot(aes(x = as.factor(round),
+  ggplot(aes(x = agemon,
              y = m,
              colour = water,
              group = water)) +
@@ -71,4 +71,5 @@ data %>%
   geom_line(alpha = 0.4)+
   labs(x = "Round of survey", 
        y = "Height-for-age z-score",
-       title = "Individual Trajectory")
+       title = "Individual Trajectory")+ 
+  facet_wrap(yc)
