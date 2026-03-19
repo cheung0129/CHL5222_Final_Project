@@ -5,6 +5,7 @@ library(broom.mixed)
 library(sjPlot)
 library(ggplot2)
 library(patchwork)
+library(ggeffects)
 
 ethiopia <- read.csv("data/processed/ethiopia_processed.csv")
 ethiopia_cc <- read.csv("data/processed/ethiopia_complete_cases.csv")
@@ -47,6 +48,7 @@ p3 <- plot(ggpredict(RS_age, terms=c("agemon", "drwaterq_new")), show_data = T)
 
 p1 + p2 + p3 + plot_layout(guides="collect", nrow=1) &
   theme(legend.position="bottom")
+ggsave("Individual/Wendy/output/Figure_random_effect.png", width=21, height=21, unit="cm")
 
 
 ##### personal notes ====
