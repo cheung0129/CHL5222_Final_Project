@@ -30,6 +30,6 @@ ethiopia_cc |>
   theme_bw() +
   labs(x = "Survey Round", y = "Height-for-age z-score") +
   # 4. Changed from "none" to "bottom" so you can actually see the color labels!
-  theme(legend.position = "bottom")
+  theme(legend.position = "right")
 ggsave("individual/Wendy/output/figure_by_visit.png", 
-       width=24,height=21,unit="cm")
+       width=14,height=12,unit="cm")
