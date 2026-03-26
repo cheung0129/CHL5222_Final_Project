@@ -46,7 +46,9 @@ kable(
 ```
 ```{r}
 setwd(here())
-ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |> dplyr::select(!childid)
+ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |> 
+  dplyr::select(!childid) |> 
+  mutate(chsex=factor(chsex,level=c(1,2), label=c("F","M")))
 yc <- ethiopia |> dplyr::filter(yc==1) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 oc <- ethiopia |> dplyr::filter(yc==0) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 tbl_summary(yc, by=round,
