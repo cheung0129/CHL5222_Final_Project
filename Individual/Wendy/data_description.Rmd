@@ -1,0 +1,62 @@
+---
+title: "data_description"
+author: "Wendy Shue"
+date: "2026-03-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(gtsummary)
+library(dplyr)
+library(here)
+library(kableExtra)
+```
+
+```{r create-data-dict, echo=FALSE, message=FALSE, warning=FALSE}
+# Load the necessary library
+library(knitr)
+
+# Create the data frame with your variables
+data_dict <- data.frame(
+  variable_name = c(
+    "agemon", "childid", "chsex", "dint", 
+    "drwaterq_new", "round", "yc", "zhfa"
+  ),
+  variable_description = c(
+    "Child’s age (in months)", 
+    "Child ID", 
+    "Child’s sex", 
+    "Date of interview", 
+    "Access to safe drinking water", 
+    "Round of survey", 
+    "Younger cohort = 1; Older cohort = 0", 
+    "Height-for-age z-score"
+  )
+)
+
+# Generate the table
+kable(
+  data_dict, 
+  col.names = c("Variable Name", "Variable Description"), # Cleans up the headers
+  caption = "Dataset Variable Dictionary"                 # Optional table caption
+) |> 
+  kable_styling()
+```
+```{r}
+setwd(here())
+ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |> 
+  dplyr::select(!childid) |> 
+  mutate(chsex=factor(chsex,level=c(1,2), label=c("F","M")))
+yc <- ethiopia |> dplyr::filter(yc==1) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
+oc <- ethiopia |> dplyr::filter(yc==0) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
+tbl_summary(yc, by=round,
+            missing_text = "Missing", missing_stat = "{p_miss}") |> 
+  modify_caption("**Younger cohort**")
+
+tbl_summary(oc, by=round,
+            missing_text = "Missing", missing_stat = "{p_miss}") |> 
+  modify_caption("**Older cohort**")
+```
+
