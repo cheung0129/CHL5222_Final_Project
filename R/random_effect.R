@@ -26,7 +26,7 @@ RS_age_water <- lmer(zhfa ~ chsex + time + drwaterq_new + age_first_c  + chsex*t
 
 
 # summary ====
-labels=c("RI","RS_water","RS_age", "RS_age_water")
+labels=c("RI","RS_age","RS_water", "RS_age_water")
 
 tab_model(RI, RS_age,RS_water, RS_age_water,
           dv.labels = labels, 
