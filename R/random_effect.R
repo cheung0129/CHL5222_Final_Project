@@ -31,7 +31,7 @@ labels=c("RI","RS_water","RS_age", "RS_age_water")
 tab_model(RI, RS_age,RS_water, RS_age_water,
           dv.labels = labels, 
           show.ci=F, show.se=T, show.aic=T,
-          show.r2 = F, show.obs=F,
+          show.r2 = F, show.obs=F, show.ngroups = F,
           file="output/table_random_effect.doc",
           p.style="star"
           )
