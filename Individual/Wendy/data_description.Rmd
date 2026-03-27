@@ -55,12 +55,12 @@ ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |>
 yc <- ethiopia |> dplyr::filter(yc==1) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 oc <- ethiopia |> dplyr::filter(yc==0) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 tbl_summary(yc, by=round,
-            missing_text = "Missing", missing_stat = "{p_miss}",
+            missing_text = "Missing", missing_stat = "{p_miss}%",
             statistic = all_continuous() ~ "{mean} ({min}, {max})") |> 
   modify_caption("**Younger cohort**")
 
 tbl_summary(oc, by=round,
-            missing_text = "Missing", missing_stat = "{p_miss}",
+            missing_text = "Missing", missing_stat = "{p_miss}%",
             statistic = all_continuous() ~ "{mean} ({min}, {max})") |> 
   modify_caption("**Older cohort**")
 ```
