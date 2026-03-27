@@ -35,7 +35,7 @@ data_dict <- data.frame(
     "Younger cohort = 1; Older cohort = 0", 
     "Height-for-age z-score",
     "Years from the baseline age",
-    "Baseline age in months centered at 0 for each cohort"
+    "Baseline age in months centered at 0"
   )
 )
 
