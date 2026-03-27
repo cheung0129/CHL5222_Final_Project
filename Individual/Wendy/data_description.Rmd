@@ -22,7 +22,8 @@ library(knitr)
 data_dict <- data.frame(
   variable_name = c(
     "agemon", "childid", "chsex", "dint", 
-    "drwaterq_new", "round", "yc", "zhfa"
+    "drwaterq_new", "round", "yc", "zhfa",
+    "time","age_first_c"
   ),
   variable_description = c(
     "Child’s age (in months)", 
@@ -32,7 +33,9 @@ data_dict <- data.frame(
     "Access to safe drinking water", 
     "Round of survey", 
     "Younger cohort = 1; Older cohort = 0", 
-    "Height-for-age z-score"
+    "Height-for-age z-score",
+    "Years from the baseline age",
+    "Baseline age in months centered at 0"
   )
 )
 
@@ -52,11 +55,13 @@ ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |>
 yc <- ethiopia |> dplyr::filter(yc==1) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 oc <- ethiopia |> dplyr::filter(yc==0) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 tbl_summary(yc, by=round,
-            missing_text = "Missing", missing_stat = "{p_miss}") |> 
+            missing_text = "Missing", missing_stat = "{p_miss}",
+            statistic = all_continuous() ~ "{mean} ({min}, {max})") |> 
   modify_caption("**Younger cohort**")
 
 tbl_summary(oc, by=round,
-            missing_text = "Missing", missing_stat = "{p_miss}") |> 
+            missing_text = "Missing", missing_stat = "{p_miss}",
+            statistic = all_continuous() ~ "{mean} ({min}, {max})") |> 
   modify_caption("**Older cohort**")
 ```
 
