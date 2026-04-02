@@ -2,7 +2,7 @@ library(ggplot2)
 library(tidyverse)
 library(lme4)
 library(ggplot2)
-library(effects)
+
 
 data = read.csv("data/processed/ethiopia_processed.csv")
 
@@ -33,11 +33,16 @@ BIC(base_model)
 BIC(two_way_model)
 BIC(no_interaction_model)
 
+AIC(base_model)
+AIC(two_way_model)
+AIC(no_interaction_model)
+
+
+
+### Two-way interaction fit the data the best in AIC
+### No interaction fit the data the best in BIC
+
+
 anova(base_model)
 anova(two_way_model)
 anova(no_interaction_model)
-
-
-### No interaction fit the data the best
-
-
