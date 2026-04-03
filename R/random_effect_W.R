@@ -5,6 +5,7 @@ library(broom.mixed)
 library(sjPlot)
 library(ggplot2)
 library(patchwork)
+library(lattice)
 library(ggeffects)
 
 load("data/processed/lmmdata.RData")

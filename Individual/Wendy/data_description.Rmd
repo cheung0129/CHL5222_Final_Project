@@ -54,8 +54,8 @@ setwd(here())
 ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |> 
   dplyr::select(!childid) |> 
   mutate(chsex=factor(chsex,level=c(1,2), label=c("F","M")))
-yc <- ethiopia |> dplyr::filter(yc==1) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
-oc <- ethiopia |> dplyr::filter(yc==0) |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
+yc <- ethiopia_yg |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
+oc <- ethiopia_old |> dplyr::select(round,agemon,chsex,zhfa, drwaterq_new)
 labels <- list(agemon="Age (months)", chsex="Sex", 
                zhfa="Height-for-age Z score", drwaterq_new="Access to safe water")
 
@@ -73,7 +73,6 @@ p2 <- tbl_summary(oc, by=round,
             label=labels) 
 
 ## combined
-tbl_merge(list(p1,p2), tab_spanner=c("**Younger Cohort**", "**Older Cohort**")) |> 
-  as_flex_table()
+tbl_merge(list(p1,p2), tab_spanner=c("**Younger Cohort**", "**Older Cohort**")) 
 ```
 
