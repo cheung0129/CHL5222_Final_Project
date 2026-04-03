@@ -46,14 +46,3 @@ str(data_formatted)
 save_path_processed <- here("data","processed","ethiopia_processed.csv")
 
 write.csv(data_formatted, save_path_processed)
-
-
-
-# data set with complete case analysis/listwise deletion
-# data_complete_cases <- data_formatted[complete.cases(data_formatted),] 
-# str(data_complete_cases)
-
-# save data set with removed missing observations
-# save_path_complete_cases <- here("data","processed","ethiopia_complete_cases.csv")
-# 
-# write.csv(data_complete_cases, save_path_complete_cases)
