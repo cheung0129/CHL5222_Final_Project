@@ -1,6 +1,11 @@
 library(here)
+<<<<<<< HEAD
 library(gtsummary)
 library(gt)
+=======
+library(dplyr)
+library(gtsummary)
+>>>>>>> bf17d64892a26ff342236fb8cc7252532caee23e
 
 setwd(here())
 ## data cleaning 
