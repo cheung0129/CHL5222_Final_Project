@@ -9,27 +9,20 @@ library(lattice)
 library(ggeffects)
 
 load("data/processed/lmmdata.RData")
-
+ethiopia_old <- ethiopia_df |> dplyr::filter(yc==0)
 
 ## RI ====
 RI <- lmer(zhfa ~ chsex + time + drwaterq_new + age_first_c  + chsex*time + chsex*drwaterq_new + time*drwaterq_new + (1 | childid), data=ethiopia_df)
 
 
-## RS w/ water ====
-## reasoning of random slope for drwaterq_new: access to drinking water is not constant within each child 
-RS_water <- lmer(zhfa ~ chsex + time + drwaterq_new + age_first_c  + chsex*time + chsex*drwaterq_new + time*drwaterq_new + (drwaterq_new | childid) , data=ethiopia_df)
-
 ## RS w/ age ====
 RS_age <- lmer(zhfa ~ chsex + time + drwaterq_new + age_first_c  + chsex*time + chsex*drwaterq_new + time*drwaterq_new + (time | childid), data=ethiopia_df)
 
-## RS w/ age & water ====
-RS_age_water <- lmer(zhfa ~ chsex + time + drwaterq_new + age_first_c  + chsex*time + chsex*drwaterq_new + time*drwaterq_new +  (time + drwaterq_new | childid), data=ethiopia_df)
-
 
 # summary ====
-labels=c("RI","RS_age","RS_water", "RS_age_water")
+labels=c("RI","RS_age")
 
-tab_model(RI, RS_age,RS_water, RS_age_water,
+tab_model(RI, RS_age,
           dv.labels = labels, 
           show.ci=F, show.se=T, show.aic=T,
           show.r2 = F, show.obs=F, show.ngroups = F,
