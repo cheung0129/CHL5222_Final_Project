@@ -26,15 +26,11 @@ tab_model(RI, RS_age,
           dv.labels = labels, 
           show.ci=F, show.se=T, show.aic=T,
           show.r2 = F, show.obs=F, show.ngroups = F,
-          terms=NA,
           file="output/table_random_effect.doc",
           p.style="star"
           )
 
-png("output/figure_random_slope.png", width=20, height=20, units="cm", res=300)
-dotplot(ranef(RS_age))
-dev.off()
-
-png("output/figure_random_interecept.png", width=20, height=20, units="cm", res=300)
-dotplot(ranef(RI))
+png("output/figure_random_slope.png", width=25, height=15, units="cm", res=300)
+p1 <- update(dotplot(ranef(RS_age))$childid, main = list(label="A", just="left", x=0.02))
+p2 <- update(dotplot(ranef(RI))$childid, main = list(label="B", just="left", x=0.02))
 dev.off()
