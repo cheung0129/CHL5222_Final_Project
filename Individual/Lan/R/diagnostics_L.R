@@ -149,7 +149,7 @@ qqnorm(re_old, main = "(N) Older: Q–Q random intercepts")
 qqline(re_old, col = "red")
 
 
-mtext("Figure A1. Diagnostic plots for cohort-specific linear mixed-effects models",
+mtext("Diagnostic plots for cohort-specific linear mixed-effects models",
       outer = TRUE, cex = 1.2, font = 2, line = 2)
 
 mtext("Left column: Younger cohort    Right column: Older cohort",
