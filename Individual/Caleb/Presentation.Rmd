@@ -1,0 +1,28 @@
+---
+title: "Presentation Graph"
+output: pdf_document
+date: "2026-03-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lmerTest)
+library(knitr)
+load("data/processed/lmmdata.RData")
+```
+
+```{r}
+model_all = lmer(zhfa ~ as.factor(chsex) + 
+                   time +
+                   drwaterq_new + 
+                   as.factor(chsex) * time + 
+                   as.factor(chsex)*drwaterq_new + 
+                   time*drwaterq_new + 
+                   age_first_c + 
+                   (1|childid),
+                 data = ethiopia_df)
+sf = summary(model_all)
+kable(as.data.frame(sf$coefficients))
+```
+
+
