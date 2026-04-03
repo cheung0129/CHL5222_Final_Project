@@ -33,4 +33,6 @@ tab_model(RI, RS_age,
 png("output/figure_random_slope.png", width=25, height=15, units="cm", res=300)
 p1 <- update(dotplot(ranef(RS_age))$childid, main = list(label="A", just="left", x=0.02))
 p2 <- update(dotplot(ranef(RI))$childid, main = list(label="B", just="left", x=0.02))
+print(p1, split = c(1, 1, 2, 1), more = TRUE)  # Places plot1 in column 1
+print(p2, split = c(2, 1, 2, 1), more = FALSE)
 dev.off()
