@@ -25,7 +25,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.11</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;1.54 <sup>***</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.12</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;1.55 <sup>***</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;1.56 <sup>***</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.13</td>
 </tr>
 <tr>
@@ -36,7 +36,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.07</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.04 <sup></sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.08</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;0.04 <sup></sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;0.05 <sup></sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.09</td>
 </tr>
 <tr>
@@ -47,7 +47,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.00 <sup>***</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;0.00 <sup>**</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">&#45;0.00 <sup>***</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.00</td>
 </tr>
 <tr>
@@ -80,8 +80,8 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.08</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.16 <sup></sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.09</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">0.15 <sup></sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">0.17 <sup></sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.10</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">agemon × drwaterq new</td>
@@ -91,7 +91,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00 <sup></sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.00</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">0.00 <sup></sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">0.00 <sup>*</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">0.00</td>
 </tr>
 <tr>
@@ -114,7 +114,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.88</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.86</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.72</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.62</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.63</td>
 </tr>
 
 <tr>
@@ -122,7 +122,7 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.87 <sub>childid</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.97 <sub>childid</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">1.76 <sub>childid</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">2.40 <sub>childid</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">2.34 <sub>childid</sub></td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&tau;<sub>11</sub></td>
@@ -136,28 +136,28 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.48 <sub>childid.drwaterq_new</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.53 <sub>childid.drwaterq_new</sub></td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&rho;<sub>01</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.37 <sub>childid</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.77 <sub>childid</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.75</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.80</td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">&nbsp;</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">-0.37</td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">ICC</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.50</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.51</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.57</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.66</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.65</td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N</td>
@@ -177,14 +177,14 @@
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.021 / 0.506</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.021 / 0.517</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.021 / 0.580</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.020 / 0.668</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.021 / 0.661</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">39607.215</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">39592.927</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">38819.351</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">38867.314</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">38819.682</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">38949.431</td>
 </tr>
 <tr>
 <td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
