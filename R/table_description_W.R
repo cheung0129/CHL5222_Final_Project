@@ -1,3 +1,7 @@
+library(here)
+library(dplyr)
+library(gtsummary)
+
 setwd(here())
 ## data cleaning 
 ethiopia <- read.csv(paste0(here(),"/data/processed/ethiopia_processed.csv")) |> 
