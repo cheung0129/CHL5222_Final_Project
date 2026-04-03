@@ -34,3 +34,7 @@ tab_model(RI, RS_age,
 png("output/figure_random_slope.png", width=20, height=20, units="cm", res=300)
 dotplot(ranef(RS_age))
 dev.off()
+
+png("output/figure_random_interecept.png", width=20, height=20, units="cm", res=300)
+dotplot(ranef(RI))
+dev.off()
