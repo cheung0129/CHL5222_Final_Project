@@ -7,7 +7,7 @@ library(ggplot2)
 library(patchwork)
 library(lattice)
 library(ggeffects)
-library(html2latex)
+#library(html2latex)
 
 load("data/processed/lmmdata.RData")
 ethiopia_old <- ethiopia_df |> dplyr::filter(yc==0)

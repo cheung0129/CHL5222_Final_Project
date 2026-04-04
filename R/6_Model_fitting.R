@@ -3,6 +3,8 @@ library(knitr)
 library(tidyverse)
 library(broom.mixed)
 library(ggeffects)
+library(patchwork)
+
 load("data/processed/lmmdata.RData")
 
 ####Model Fitting and the interaction plot
